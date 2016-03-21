@@ -7,3 +7,6 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 ###Issues:  
 * Bad button placement
 * Placeholder art
+* Sticks on the wall.
+	* Removing friction makes the player move all across the terrain
+	* Using it only on the edges makes the game hardcoded
