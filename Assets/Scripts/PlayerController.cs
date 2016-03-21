@@ -2,36 +2,62 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+	public float speed        = 10;
+	public float jumpVelocity = 10;
+	public bool canMoveInAir  = true;
 
-	public float moveSpeed;
-	public float jumpHeight;
-	private Rigidbody2D rigi;
+	//private bool isGrounded = false;
+	private float hInput    = 0;
 
-	private void awake() {
+	public LayerMask playerMask;
+	private Rigidbody2D myBody;
+	private Transform myTrans, tagGround;
+
+	void Start() {
+		myBody  = this.GetComponent<Rigidbody2D>();
+		myTrans = this.transform;
+		//tagGround = GameObject.Find(this.name + "/tag_ground").transform;
 	}
-	
-	// Use this for initialization
-	void Start () {
-		rigi = GetComponent<Rigidbody2D>();
-	
+
+	void FixedUpdate() {
+		//isGrounded = Physics2D.Linecast(myTrans.position, tagGround.position, playerMask);
+
+#if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
+		KeyboardMoving();
+#else
+  Move (hInput);
+#endif
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	private void Move(float horizontalInput) {
+		//if (!canMoveInAir && !isGrounded)
+		//	return;
+
+		Vector2 moveVel = myBody.velocity;
+		moveVel.x = horizontalInput * speed;
+		myBody.velocity = moveVel;
+	}
+
+	public void Jump() {
+		//if (isGrounded)
+			myBody.velocity += jumpVelocity * Vector2.up;
+	}
+
+	public void TouchMoving(float horizonalInput) {
+		hInput = horizonalInput;
+	}
+
+	public void KeyboardMoving() {
 		if (Input.GetKeyDown(KeyCode.Space)) {
-										//0 horizontal move, jump height vertical move
-			rigi.velocity = new Vector2(rigi.velocity.x, jumpHeight);
+			Jump();
 		}
 
 		if (Input.GetKey(KeyCode.D)) {
-										//moveSpeed horizontal, gets current vertical velocity for the y
-										//Setting the vertical move to 0 will not allow the user to
-											//Jump if D is held
-			rigi.velocity = new Vector2(moveSpeed, rigi.velocity.y);
+			Move(1);
 		}
 
 		if (Input.GetKey(KeyCode.A)) {
-			rigi.velocity = new Vector2(-moveSpeed, rigi.velocity.y);
+			Move(-1);
 		}
 	}
 }
