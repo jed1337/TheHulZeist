@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed        = 10;
-	public float jumpVelocity = 10;
+	public float speed;
+	public float jumpVelocity;
 	public bool canMoveInAir  = true;
 
 	//private bool isGrounded = false;
@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		//isGrounded = Physics2D.Linecast(myTrans.position, tagGround.position, playerMask);
 
-#if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
-		KeyboardMoving();
-#else
-  Move (hInput);
-#endif
+	#if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
+			KeyboardMoving();
+	#else
+	  Move (hInput);
+	#endif
 	}
 
 	private void Move(float horizontalInput) {
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour {
 	public void Jump() {
 		//if (isGrounded)
 			myBody.velocity += jumpVelocity * Vector2.up;
+		print("Jumped");
 	}
 
 	public void TouchMoving(float horizonalInput) {
