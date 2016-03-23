@@ -13,10 +13,9 @@ public class PlayerAnimationController : MonoBehaviour {
 
 
 	void Start () {
-		mytrans = this.transform;
-		myAnim = this.gameObject.GetComponent<Animator>();
 		instance = this;
-
+		myAnim = this.gameObject.GetComponent<Animator>();
+		mytrans = this.transform;
 		artScaleCache = mytrans.localScale;
 	
 	}

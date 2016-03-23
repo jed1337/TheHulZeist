@@ -12,13 +12,14 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask playerMask;
 
 	private Rigidbody2D myBody;
-	private Transform myTrans, tagGround;
+	private Transform myTrans;
 
 	private PlayerAnimationController myAnim;
 
 
 	void Start() {
 		myAnim = PlayerAnimationController.instance;
+
 		myBody  = this.GetComponent<Rigidbody2D>();
 		myTrans = this.transform;
 		//tagGround = GameObject.Find(this.name + "/tag_ground").transform;
