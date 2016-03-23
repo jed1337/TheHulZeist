@@ -11,9 +11,11 @@ public class PlayerAnimationController : MonoBehaviour {
 	//Used to flip the character depending on its position
 	private Vector3 artScaleCache; 
 
+	void Awake() {
+		instance = this;
+	}
 
 	void Start () {
-		instance = this;
 		myAnim = this.gameObject.GetComponent<Animator>();
 		mytrans = this.transform;
 		artScaleCache = mytrans.localScale;
