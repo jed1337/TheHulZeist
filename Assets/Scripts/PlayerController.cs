@@ -5,43 +5,43 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float jumpVelocity;
 	public bool canMoveInAir  = true;
-
-	//private bool isGrounded = false;
-	private float hInput    = 0;
-
 	public LayerMask playerMask;
+
+	private bool isGrounded = false;
+	private float hInput    = 0;
 	private Rigidbody2D myBody;
-	private Transform myTrans, tagGround;
+
+	private PlayerAnimationController myAnim;
+
 
 	void Start() {
+		myAnim = PlayerAnimationController.instance;
 		myBody  = this.GetComponent<Rigidbody2D>();
-		myTrans = this.transform;
-		//tagGround = GameObject.Find(this.name + "/tag_ground").transform;
 	}
 
 	void FixedUpdate() {
-		//isGrounded = Physics2D.Linecast(myTrans.position, tagGround.position, playerMask);
+		isGrounded = myBody.velocity.y < 0.01;
+		myAnim.UpdateIsGrounded(isGrounded);
 
-	#if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
-			KeyboardMoving();
-	#else
-	  Move (hInput);
-	#endif
+#if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
+		KeyboardMoving();
+#endif
+		Move (hInput);
 	}
 
-	private void Move(float horizontalInput) {
+	private void Move(float _speed) {
 		//if (!canMoveInAir && !isGrounded)
 		//	return;
+		myAnim.UpdateSpeed(_speed);
 
 		Vector2 moveVel = myBody.velocity;
-		moveVel.x = horizontalInput * speed;
+		moveVel.x = _speed * this.speed;
 		myBody.velocity = moveVel;
 	}
 
 	public void Jump() {
-		//if (isGrounded)
+		if (isGrounded)
 			myBody.velocity += jumpVelocity * Vector2.up;
-		print("Jumped");
 	}
 
 	public void TouchMoving(float horizonalInput) {
@@ -49,16 +49,20 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void KeyboardMoving() {
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		hInput = Input.GetAxisRaw("Horizontal");
+		if (Input.GetButtonDown("Jump"))
 			Jump();
-		}
 
-		if (Input.GetKey(KeyCode.D)) {
-			Move(1);
-		}
+		//if (Input.GetKeyDown(KeyCode.Space)) {
+		//	Jump();
+		//}
 
-		if (Input.GetKey(KeyCode.A)) {
-			Move(-1);
-		}
+		//if (Input.GetKey(KeyCode.D)) {
+		//	Move(1);
+		//}
+
+		//if (Input.GetKey(KeyCode.A)) {
+		//	Move(-1);
+		//}
 	}
 }
