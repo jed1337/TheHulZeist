@@ -5,14 +5,11 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float jumpVelocity;
 	public bool canMoveInAir  = true;
+	public LayerMask playerMask;
 
 	private bool isGrounded = false;
 	private float hInput    = 0;
-
-	public LayerMask playerMask;
-
 	private Rigidbody2D myBody;
-	private Transform myTrans;
 
 	private PlayerAnimationController myAnim;
 
@@ -20,8 +17,6 @@ public class PlayerController : MonoBehaviour {
 	void Start() {
 		myAnim = PlayerAnimationController.instance;
 		myBody  = this.GetComponent<Rigidbody2D>();
-		myTrans = this.transform;
-		//tagGround = GameObject.Find(this.name + "/tag_ground").transform;
 	}
 
 	void FixedUpdate() {
@@ -31,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 #if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
 		KeyboardMoving();
 #endif
-	  Move (hInput);
+		Move (hInput);
 	}
 
 	private void Move(float _speed) {
@@ -55,8 +50,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void KeyboardMoving() {
 		hInput = Input.GetAxisRaw("Horizontal");
-		myAnim.UpdateSpeed(hInput);
-
 		if (Input.GetButtonDown("Jump"))
 			Jump();
 
@@ -65,12 +58,10 @@ public class PlayerController : MonoBehaviour {
 		//}
 
 		//if (Input.GetKey(KeyCode.D)) {
-		//	print("right");
 		//	Move(1);
 		//}
 
 		//if (Input.GetKey(KeyCode.A)) {
-		//	print("left");
 		//	Move(-1);
 		//}
 	}
