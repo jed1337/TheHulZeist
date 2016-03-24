@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 	public float speed = 1;
 	public bool isDebugMode = true;
 
-	private Color PINK = new Color(253, 192, 203, 90);
+	private Color PINK = new Color(253, 192, 203);
 	private Rigidbody2D myBody;
 	private Transform myTrans;
 	private float myWidth, myHeight;
@@ -15,22 +15,20 @@ public class Enemy : MonoBehaviour {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
 
-		SpriteRenderer mySprite = this.GetComponent<SpriteRenderer>();
-		myWidth = mySprite.bounds.extents.x;
-		myHeight = mySprite.bounds.extents.y;
+		Vector3 mySpriteBounds = this.GetComponent<SpriteRenderer>().bounds.extents;
+		myWidth  = mySpriteBounds.x;
+		myHeight = mySpriteBounds.y;
 	}
 
 	void FixedUpdate() {
 		//Use this position to cast the isGrounded/isBlocked lines from
-		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * myWidth + Vector2.down * myHeight;
+		Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
 
 		//Check to see if there's ground in front of us before moving forward
-		
-		//Debug.DrawLine(lineCastPos, lineCastPos + Vector2.down);
-		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down, enemyMask);
+		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down * 5, enemyMask);
 
 		//Check to see if there's a wall in front of us before moving forward
-		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2() * .05f, enemyMask);
+		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2() * 1f, enemyMask);
 
 		//If theres no ground, turn around. Or if I hit a wall, turn around
 		if (!isGrounded || isBlocked) {
