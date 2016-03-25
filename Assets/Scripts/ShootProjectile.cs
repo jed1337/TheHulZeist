@@ -21,6 +21,7 @@ public class ShootProjectile : MonoBehaviour {
 		Vector3 end = new Vector3(projectilePosition.x + playerRange, projectilePosition.y, projectilePosition.z);
 		Debug.DrawLine(start, end, Color.magenta);
 
+		//If the player is within range, fire at him.
 		if((transform.localScale.x > 0
 			&& playerPosition.x < projectilePosition.x
 			&& playerPosition.x > projectilePosition.x - playerRange)
@@ -31,19 +32,5 @@ public class ShootProjectile : MonoBehaviour {
 
 			Instantiate(projectile, launchPoint.position, launchPoint.rotation);
 		}
-
-		//If the player is within range, fire at him.
-		//if ((transform.localScale.x < 0
-		//	&& playerPosition.x > projectilePosition.x
-		//	&& playerPosition.x < projectilePosition.x + playerRange)
-		//	)
-			//||
-			//(transform.localScale.x > 0
-			//&& playerPosition.x < projectilePosition.x
-			//&& playerPosition.x > projectilePosition.x - playerRange)) 
-			//{
-
-			//Instantiate(projectile, launchPoint.position, launchPoint.rotation);
-		//}
 	}
 }
