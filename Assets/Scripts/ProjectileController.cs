@@ -32,7 +32,7 @@ public class ProjectileController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		print("Collide");
+		//print("Collide");
 		//Implement - life
 	}
 }
