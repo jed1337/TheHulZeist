@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 41dfa1ef6f7282a4193ab50a4124a410
-timeCreated: 1458120078
+timeCreated: 1458903162
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Player
     21300002: Ground
+    21300004: enemyStar
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,6 +71,17 @@ TextureImporter:
         y: 80
         width: 16
         height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: enemyStar
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 95
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
