@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviour {
 	public bool canMoveInAir  = true;
 	public LayerMask playerMask;
 
-	private bool isGrounded = false;
+	public Transform groundCheck;
+	public float groundCheckRadius;
+	public LayerMask whatIsGround;
+	private bool grounded;
+
 	private float hInput    = 0;
 	private Rigidbody2D myBody;
 
@@ -20,8 +24,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		isGrounded = myBody.velocity.y < 0.01;
-		myAnim.UpdateIsGrounded(isGrounded);
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+		myAnim.UpdateIsGrounded(grounded);
 
 #if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
 		KeyboardMoving();
@@ -30,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Move(float _speed) {
-		//if (!canMoveInAir && !isGrounded)
+		//if (!canMoveInAir && !grounded)
 		//	return;
 		myAnim.UpdateSpeed(_speed);
 
@@ -40,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void Jump() {
-		if (isGrounded)
+		if (grounded)
 			myBody.velocity += jumpVelocity * Vector2.up;
 	}
 
@@ -52,17 +56,5 @@ public class PlayerController : MonoBehaviour {
 		hInput = Input.GetAxisRaw("Horizontal");
 		if (Input.GetButtonDown("Jump"))
 			Jump();
-
-		//if (Input.GetKeyDown(KeyCode.Space)) {
-		//	Jump();
-		//}
-
-		//if (Input.GetKey(KeyCode.D)) {
-		//	Move(1);
-		//}
-
-		//if (Input.GetKey(KeyCode.A)) {
-		//	Move(-1);
-		//}
 	}
 }
