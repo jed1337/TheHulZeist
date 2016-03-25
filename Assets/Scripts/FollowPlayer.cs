@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour {
 	public Transform target;
 
 	private Vector3 velocity = Vector3.zero;
-	private Camera camera;
+	private new Camera camera;
 
 	void Start() {
 		camera = this.GetComponent<Camera>();

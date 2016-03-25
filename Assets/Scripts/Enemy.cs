@@ -9,15 +9,13 @@ public class Enemy : MonoBehaviour {
 	private Color PINK = new Color(253, 192, 203);
 	private Rigidbody2D myBody;
 	private Transform myTrans;
-	private float myWidth, myHeight;
+	private float myWidth;
 
 	void Start() {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
 
-		Vector3 mySpriteBounds = this.GetComponent<SpriteRenderer>().bounds.extents;
-		myWidth  = mySpriteBounds.x;
-		myHeight = mySpriteBounds.y;
+		myWidth  = this.GetComponent<SpriteRenderer>().bounds.extents.x;
 	}
 
 	void FixedUpdate() {
