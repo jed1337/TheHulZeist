@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour {
 	public float speed = 1;
 	public bool isDebugMode = true;
 
-	private Color PINK = new Color(253, 192, 203);
 	private Rigidbody2D myBody;
 	private Transform myTrans;
 	private float myWidth;
@@ -43,7 +42,7 @@ public class EnemyController : MonoBehaviour {
 
 	bool CheckBounds(Vector2 start, Vector2 end, LayerMask mask) {
 		if (isDebugMode) {
-			Debug.DrawLine(start, end, PINK);
+			Debug.DrawLine(start, end, Color.green);
 		}
 		return Physics2D.Linecast(start, end, mask);
 	}
