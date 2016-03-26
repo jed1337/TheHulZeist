@@ -2,21 +2,22 @@
 using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
+	public static PlayerAttack instance;
+
+	public Collider2D attackTrigger;
 
 	private bool attacking = false;
-
 	private float attackTimer = 0;
 	private float attackCd = 0.3f;
 
-	public Collider2D attackTrigger;
-	private Animator anim;
-
+	private PlayerAnimationController anim;
 	void Awake() {
-		anim = gameObject.GetComponent<Animator>();
+		instance = this;
 		attackTrigger.enabled = false;
+		anim = PlayerAnimationController.instance;
 	}
 
-	void Update() {
+	public void TryAttack() {
 		if(Input.GetKey(KeyCode.Space) && !attacking) {
 			attacking = true;
 			attackTimer = attackCd;
@@ -31,7 +32,9 @@ public class PlayerAttack : MonoBehaviour {
 			else {
 				attacking = false;
 				attackTrigger.enabled = false;
+
 			}
 		}
+		anim.UpdateIsAttacking(attacking);
 	}
 }
