@@ -9,13 +9,13 @@ public class ProjectileController : MonoBehaviour {
 	public PlayerController player;
 	public GameObject impactEffect;
 
-	private Rigidbody2D myRigidBody2D;
+	private Rigidbody2D rBody;
 	private Vector3 velocity;
 
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
-		myRigidBody2D = GetComponent<Rigidbody2D>();
+		rBody = GetComponent<Rigidbody2D>();
 
 		//If the player is to the left of the projectile, instead of setting the
 		//speed of the projectile to go to the right, it goes to the left
@@ -23,13 +23,14 @@ public class ProjectileController : MonoBehaviour {
 			speed *= -1;
 			rotationSpeed *= -1;
 		}
+		rBody.AddForce(new Vector2(speed, rBody.velocity.y));
 	}
 
 	// Update is called once per frame
-	void Update () {
-		myRigidBody2D.velocity = new Vector2(speed, myRigidBody2D.velocity.y);
-		myRigidBody2D.angularVelocity = rotationSpeed;		
-	}
+	//void FixedUpdate () {
+	//	rBody.velocity = new Vector2(speed, rBody.velocity.y);
+	//	rBody.angularVelocity = rotationSpeed;		
+	//}
 
 	//void OnTriggerEnter2D(Collider2D other) {
 	//	//print(other.gameObject.layer == LayerMask.NameToLayer("Terrain"));
