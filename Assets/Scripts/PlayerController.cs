@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Move(float _speed) {
-		//if (!canMoveInAir && !grounded)
-		//	return;
 		myAnim.UpdateSpeed(_speed);
 
 		Vector2 moveVel = myBody.velocity;
@@ -53,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void KeyboardMoving() {
 		hInput = Input.GetAxisRaw("Horizontal");
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetKeyDown(KeyCode.W))
 			Jump();
 	}
 }
