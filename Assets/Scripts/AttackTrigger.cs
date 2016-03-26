@@ -3,13 +3,9 @@ using System.Collections;
 
 public class AttackTrigger : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public int dmg = 20;
+
+	void OnTriggerEnter2D(Collider2D col) {
+		//if(!col.isTrigger && col.CompareTag)
 	}
 }
