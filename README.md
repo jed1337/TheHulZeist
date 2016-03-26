@@ -9,3 +9,6 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 * Game balance
 	* Speed, jump height, etc.
 	* Enemy things
+* Logic
+	* Enemy fires from behind if the player is within range
+	* Enemy Only fires at 90 deg, not towards the player
