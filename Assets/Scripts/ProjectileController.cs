@@ -10,7 +10,7 @@ public class ProjectileController : MonoBehaviour {
 	public GameObject impactEffect;
 
 	private Rigidbody2D myRigidBody2D;
-
+	private Vector3 velocity;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +31,10 @@ public class ProjectileController : MonoBehaviour {
 		myRigidBody2D.angularVelocity = rotationSpeed;		
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		//print("Collide");
-		//Implement - life
-	}
+	//void OnTriggerEnter2D(Collider2D other) {
+	//	//print(other.gameObject.layer == LayerMask.NameToLayer("Terrain"));
+	//	Rigidbody2D rBody = this.GetComponent<Rigidbody2D>();
+	//	velocity = rBody.velocity;
+	//	rBody.velocity = Quaternion.AngleAxis(180, rBody.position) * transform.forward * 1;
+	//}
 }

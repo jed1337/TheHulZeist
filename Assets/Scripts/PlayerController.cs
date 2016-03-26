@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerAnimationController myAnim;
 
-
 	void Start() {
 		myAnim = PlayerAnimationController.instance;
 		myBody  = this.GetComponent<Rigidbody2D>();
