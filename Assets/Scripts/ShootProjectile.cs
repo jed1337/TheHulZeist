@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ShootProjectile : MonoBehaviour {
 	public float playerRange;
+	public float projectileSpeed;
 	public float fireRate;
 	public float projectileLife = 3;
 
@@ -15,6 +16,7 @@ public class ShootProjectile : MonoBehaviour {
 	//For debugging
 	private Vector3 pPosition;
 	private Vector3 lPosition;
+	private Vector3 force;
 	private bool hitTerrain = false;
 
 	void Start () {
@@ -46,7 +48,10 @@ public class ShootProjectile : MonoBehaviour {
 
 				//Shoot projectile
 				GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
-				cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPos - launchPoint.position);
+				//cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPos - launchPoint.position);
+
+				force = (playerPos - launchPoint.position).normalized* projectileSpeed;
+				cloneProjectile.GetComponent<Rigidbody2D>().AddForce(force);
 
 				Destroy(cloneProjectile, projectileLife);
 

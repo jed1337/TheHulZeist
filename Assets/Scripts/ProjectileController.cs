@@ -3,28 +3,28 @@ using System.Collections;
 
 public class ProjectileController : MonoBehaviour {
 	public float rotationSpeed;
-	public float speed;
 	public int damageToGive;
 
-	public PlayerController player;
-	public GameObject impactEffect;
+	//public PlayerController player;
+	//public GameObject impactEffect;
 
-	private Rigidbody2D rBody;
-	private Vector3 velocity;
+	//private Rigidbody2D rBody;
+	//private Vector3 velocity;
 
-	// Use this for initialization
-	void Start () {
-		player = FindObjectOfType<PlayerController>();
-		rBody = GetComponent<Rigidbody2D>();
+	//// Use this for initialization
+	//void Start () {
+	//	player = FindObjectOfType<PlayerController>();
+	//	rBody = GetComponent<Rigidbody2D>();
 
-		//If the player is to the left of the projectile, instead of setting the
-		//speed of the projectile to go to the right, it goes to the left
-		if (player.transform.position.x < transform.position.x) {
-			speed *= -1;
-			rotationSpeed *= -1;
-		}
-		rBody.AddForce(new Vector2(speed, rBody.velocity.y));
-	}
+	//	//If the player is to the left of the projectile, instead of setting the
+	//	//speed of the projectile to go to the right, it goes to the left
+	//	if (player.transform.position.x < transform.position.x) {
+	//		speed *= -1;
+	//		rotationSpeed *= -1;
+	//	}
+
+	//	//rBody.AddForce(new Vector2(speed, rBody.velocity.y));
+	//}
 
 	// Update is called once per frame
 	//void FixedUpdate () {
