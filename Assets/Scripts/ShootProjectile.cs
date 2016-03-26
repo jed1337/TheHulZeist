@@ -4,7 +4,7 @@ using System.Collections;
 public class ShootProjectile : MonoBehaviour {
 	public float playerRange;
 	public float fireRate;
-	public float bulletLife = 3;
+	public float projectileLife = 3;
 
 	public GameObject projectile;
 	public PlayerController player;
@@ -12,8 +12,10 @@ public class ShootProjectile : MonoBehaviour {
 
 	private float shotCounter;
 
+	//For debugging
 	private Vector3 pPosition;
 	private Vector3 lPosition;
+	private bool hitTerrain = false;
 
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
@@ -23,32 +25,32 @@ public class ShootProjectile : MonoBehaviour {
 	void Update() {
 		shotCounter -= Time.deltaTime;
 
-		Vector3 playerPosition = player.transform.position;
-		Vector3 projPosition = transform.position;
+		Vector3 playerPos = player.transform.position;
+		Vector3 enemyPos = transform.position;
 
-
-		Vector3 start = new Vector3(projPosition.x - playerRange, projPosition.y, projPosition.z);
-		Vector3 end = new Vector3(projPosition.x + playerRange, projPosition.y, projPosition.z);
+		Vector3 start = new Vector3(enemyPos.x - playerRange, enemyPos.y, enemyPos.z);
+		Vector3 end = new Vector3(enemyPos.x + playerRange, enemyPos.y, enemyPos.z);
 		Debug.DrawLine(start, end, Color.magenta);
+		Debug.DrawLine(launchPoint.position, playerPos, Color.red);
+		hitTerrain = Physics2D.Linecast(launchPoint.position, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
 
 		//Only fire if the enemy has reloaded
 		if (shotCounter < 0 && transform.localScale.x > 0) {
 			//If the player is within range, fire at him.
-			if (( playerPosition.x < projPosition.x	//Fire at the left
-				&& playerPosition.x > projPosition.x - playerRange)
+			if (( playerPos.x < enemyPos.x	//Fire at the left
+				&& playerPos.x > enemyPos.x - playerRange)
 				||
-				(playerPosition.x > projPosition.x  //Fire at the right
-				&& playerPosition.x < projPosition.x + playerRange)
+				(playerPos.x > enemyPos.x		//Fire at the right
+				&& playerPos.x < enemyPos.x + playerRange)
 				){
 
-				//cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPosition.toVector2() - launchPoint.position.toVector2());
+				//Shoot projectile
+				GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
+				cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPos - launchPoint.position);
 
+				Destroy(cloneProjectile, projectileLife);
 
-				//Instantiate(projectile, launchPoint.position, launchPoint.rotation);
-				GameObject cloneProjectile = (GameObject)Instantiate(projectile, launchPoint.position, launchPoint.rotation);
-				cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPosition - launchPoint.position);
-
-				pPosition = playerPosition;
+				pPosition = playerPos;
 				lPosition = launchPoint.position;
 			}
 			shotCounter = fireRate;
