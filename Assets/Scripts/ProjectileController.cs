@@ -24,7 +24,7 @@ public class ProjectileController : MonoBehaviour {
 			rotationSpeed *= -1;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		myRigidBody2D.velocity = new Vector2(speed, myRigidBody2D.velocity.y);
