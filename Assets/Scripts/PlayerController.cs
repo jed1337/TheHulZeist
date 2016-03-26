@@ -12,14 +12,16 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask whatIsGround;
 	private bool grounded;
 
-	private float hInput    = 0;
+	private float hInput = 0;
 	private Rigidbody2D myBody;
 
 	private PlayerAnimationController myAnim;
+	private PlayerAttack myAttack;
 
 	void Start() {
 		myAnim = PlayerAnimationController.instance;
-		myBody  = this.GetComponent<Rigidbody2D>();
+		myAttack = PlayerAttack.instance;
+		myBody = this.GetComponent<Rigidbody2D>();
 	}
 
 	void FixedUpdate() {
@@ -33,8 +35,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Move(float _speed) {
-		//if (!canMoveInAir && !grounded)
-		//	return;
 		myAnim.UpdateSpeed(_speed);
 
 		Vector2 moveVel = myBody.velocity;
@@ -53,7 +53,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void KeyboardMoving() {
 		hInput = Input.GetAxisRaw("Horizontal");
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetKeyDown(KeyCode.W)) {
 			Jump();
+		}
+		myAttack.TryAttack();
 	}
 }

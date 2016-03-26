@@ -16,3 +16,8 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 	* Enemy things
 * Logic
 	* Enemy fires from behind if the player is within range
+* Code Quality
+	* Possible Coupling between player scripts (I feel this is the case)
+		* PlayerAttack.cs
+		* PlayerController.cs
+		* PlayerAnimationController.cs

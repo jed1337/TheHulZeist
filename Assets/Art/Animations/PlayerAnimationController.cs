@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class PlayerAnimationController : MonoBehaviour {
-
 	public static PlayerAnimationController instance;
 
 	private Transform mytrans;
@@ -16,7 +15,7 @@ public class PlayerAnimationController : MonoBehaviour {
 	}
 
 	void Start () {
-		myAnim = this.gameObject.GetComponent<Animator>();
+		myAnim = this.gameObject.GetComponentInChildren<Animator>();
 		mytrans = this.transform;
 		artScaleCache = mytrans.localScale;
 	
@@ -41,7 +40,9 @@ public class PlayerAnimationController : MonoBehaviour {
 		myAnim.SetBool("isGrounded", isGrounded);
 	}
 
-	
-	void Update () {
+	public void UpdateIsAttacking(bool isAttacking) {
+		myAnim.SetBool("isAttacking", isAttacking);
 	}
+
+	
 }
