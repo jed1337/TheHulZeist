@@ -14,6 +14,9 @@ public class PlayerAttack : MonoBehaviour {
 	void Awake() {
 		instance = this;
 		attackTrigger.enabled = false;
+	}
+
+	void Start() {
 		anim = PlayerAnimationController.instance;
 	}
 
