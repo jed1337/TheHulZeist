@@ -20,14 +20,7 @@ public class PlayerAttack : MonoBehaviour {
 		anim = PlayerAnimationController.instance;
 	}
 
-	public void TryAttack() {
-		if(Input.GetKey(KeyCode.Space) && !attacking) {
-			attacking = true;
-			attackTimer = attackCd;
-
-
-			attackTrigger.enabled = true;
-		}
+	void FixedUpdate() {
 		if (attacking) {
 			if (attackTimer > 0) {
 				attackTimer -= Time.deltaTime;
@@ -37,7 +30,18 @@ public class PlayerAttack : MonoBehaviour {
 				attackTrigger.enabled = false;
 
 			}
+			anim.UpdateIsAttacking(attacking);
 		}
-		anim.UpdateIsAttacking(attacking);
+	}
+
+	public void TryAttack() {
+		if (!attacking) {
+
+			attacking = true;
+			attackTimer = attackCd;
+
+
+			attackTrigger.enabled = true;
+		}
 	}
 }

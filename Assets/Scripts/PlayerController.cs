@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.W)) {
 			Jump();
 		}
-		myAttack.TryAttack();
+		if (Input.GetKey(KeyCode.Space)) {
+			myAttack.TryAttack();
+		}
 	}
 }
