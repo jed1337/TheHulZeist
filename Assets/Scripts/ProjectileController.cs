@@ -2,51 +2,40 @@
 using System.Collections;
 
 public class ProjectileController : MonoBehaviour {
-	//public PlayerController player;
-	//public GameObject impactEffect;
-
-	//private Rigidbody2D rBody;
-	//private Vector3 velocity;
-
-	//// Use this for initialization
-	//void Start () {
-	//	player = FindObjectOfType<PlayerController>();
-	//	rBody = GetComponent<Rigidbody2D>();
-
-	//	//If the player is to the left of the projectile, instead of setting the
-	//	//speed of the projectile to go to the right, it goes to the left
-	//	if (player.transform.position.x < transform.position.x) {
-	//		speed *= -1;
-	//		rotationSpeed *= -1;
-	//	}
-
-	//	//rBody.AddForce(new Vector2(speed, rBody.velocity.y));
-	//}
-
-	// Update is called once per frame
-	//void FixedUpdate () {
-	//	rBody.velocity = new Vector2(speed, rBody.velocity.y);
-	//	rBody.angularVelocity = rotationSpeed;		
-	//}
-
-	//void OnTriggerEnter2D(Collider2D other) {
-	//	//print(other.gameObject.layer == LayerMask.NameToLayer("Terrain"));
-	//	Rigidbody2D rBody = this.GetComponent<Rigidbody2D>();
-	//	velocity = rBody.velocity;
-	//	rBody.velocity = Quaternion.AngleAxis(180, rBody.position) * transform.forward * 1;
-	//}
-
-
 	public float rotationSpeed;
 	public int damageToGive;
-
 	public string owner;
 
-	void OnCollisionEnter2D(Collision2D col) {
-		print("Collide");
-		
+	private string colOtherLayer;
+	private string thisLayer;
+
+	//For debugging
+	private string collissionOtherName;
+
+	void Start() {
+		thisLayer = LayerMask.LayerToName(gameObject.layer);
 	}
 
+	void OnCollisionEnter2D(Collision2D col) {
+		colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
+		collissionOtherName = col.gameObject.name;
+
+		print(collissionOtherName);
+
+		//If the collission is not with another projectile (same layer), and it isn't with the terrain
+		if(colOtherLayer!=thisLayer && colOtherLayer != ConstantNames.TERRAIN) {
+			Debug.Log("Test");
+			//if(colOtherLayer == ConstantNames.PLAYER) {
+			//	Debug.Log("Hit player");
+			//}
+			//for (int i = 0; i < col.contacts.Length; i++) {
+			//	Debug.Log(i+" Collided with: "+col.contacts[i].collider.name);
+			//	if(col.contacts[i].collider.name == ConstantNames.ATTACK_TRIGGER) {
+			//		Debug.Log("Hit trigger");
+			//	}
+			//}
+		}
+	}
 
 	public void SetOwner(int ownerLayer) {
 		SetOwner(LayerMask.LayerToName(ownerLayer));

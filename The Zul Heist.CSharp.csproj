@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Art\Animations\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\AttackTrigger.cs" />
+    <Compile Include="Assets\Scripts\ConstantNames.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
