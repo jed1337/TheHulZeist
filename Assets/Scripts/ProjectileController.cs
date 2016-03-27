@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class ProjectileController : MonoBehaviour {
 	public float rotationSpeed;
@@ -20,11 +21,11 @@ public class ProjectileController : MonoBehaviour {
 		colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
 		collissionOtherName = col.gameObject.name;
 
-		print(collissionOtherName);
+		//print(collissionOtherName);
 
-		//If the collission is not with another projectile (same layer), and it isn't with the terrain
-		if(colOtherLayer!=thisLayer && colOtherLayer != ConstantNames.TERRAIN) {
-			Debug.Log("Test");
+		//Ignore collission if with another projectile (thislayer), terrain, and the owner
+		string[] ignoreCol = new string[]{ thisLayer, ConstantNames.TERRAIN, owner};
+		if (!ignoreCol.Contains(colOtherLayer)) {
 
 			//if(colOtherLayer == ConstantNames.PLAYER) {
 			//	Debug.Log("Hit player");
