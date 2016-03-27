@@ -64,6 +64,7 @@ public class ShootProjectile : MonoBehaviour {
 		force = (playerPos - launchPoint.position).normalized* projectileSpeed;	//For debugging
 		cloneProjectile.GetComponent<Rigidbody2D>().AddForce(force);
 		pc.SetOwner(gameObject.layer);
+		pc.SetHostileTo(ConstantNames.PLAYER);
 		Destroy(cloneProjectile, projectileLife);
 	}
 }
