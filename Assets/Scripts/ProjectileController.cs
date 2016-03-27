@@ -5,6 +5,7 @@ using System.Linq;
 public class ProjectileController : MonoBehaviour {
 	public float rotationSpeed;
 	public int damageToGive;
+	public bool inDebugMode = false;
 
 	private string owner;
 	private string hostileTo;
@@ -25,12 +26,11 @@ public class ProjectileController : MonoBehaviour {
 
 		//If the contact is with a hostility
 		if (colOtherLayer == hostileTo) {
-			//DebugLogContact();
 			bool destroyHostility = true;
 			if (colOtherLayer == ConstantNames.PLAYER) {
 				string col0Name = col.contacts[0].collider.name;
 				bool deflected = col0Name == ConstantNames.ATTACK_TRIGGER;
-				DebugCheckIfDeflected(col0Name);
+				//DebugCheckIfDeflected(col0Name);
 
 				if (deflected) {	//Swap owner and hostile to
 					string temp = owner;
@@ -41,14 +41,17 @@ public class ProjectileController : MonoBehaviour {
 				}
 			}
 			if (destroyHostility) {
-				Destroy(col.gameObject);
+				DebugLogContact();
+				if(!inDebugMode)
+					Destroy(col.gameObject);
+				Destroy(gameObject);	//Destroy the projectile
 			}
 		}
 	}
 
 	private static void DebugCheckIfDeflected(string col0Name) {
 		if (col0Name == ConstantNames.ATTACK_TRIGGER) {
-			Debug.Log("Blocked");
+			Debug.Log("DEFLECTED");
 		}
 		else {
 			Debug.Log("HIT PLAYER " + col0Name);

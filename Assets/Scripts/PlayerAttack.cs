@@ -5,16 +5,16 @@ public class PlayerAttack : MonoBehaviour {
 	public static PlayerAttack instance;
 
 	public Collider2D attackTrigger;
+	public float attackCd = 0.3f;
 
 	private bool attacking = true;
 	private float attackTimer = 0;
-	private float attackCd = 0.3f;
 
 	private PlayerAnimationController anim;
 
 	void Awake() {
 		instance = this;
-		//attackTrigger.enabled = false;
+		attackTrigger.enabled = false;
 	}
 
 	void Start() {
@@ -22,26 +22,27 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		//	if (attacking) {
-		//		if (attackTimer > 0) {
-		//			attackTimer -= Time.deltaTime;
-		//		}
-		//		else {
-		//			attacking = false;
-		//			attackTrigger.enabled = false;
+		if (attacking) {
+			if (attackTimer > 0) {
+				attackTimer -= Time.deltaTime;
+			}
+			else {
+				attacking = false;
+				attackTrigger.enabled = false;
 
-		//		}
-		//		anim.UpdateIsAttacking(attacking);
-		//	}
+			}
+			anim.UpdateIsAttacking(attacking);
+		}
 	}
 
 	public void TryAttack() {
-		//	if (!attacking) {
+		if (!attacking) {
 
-		//		attacking = true;
-		//		attackTimer = attackCd;
+			attacking = true;
+			attackTimer = attackCd;
 
 
-		//		attackTrigger.enabled = true;
+			attackTrigger.enabled = true;
+		}
 	}
 }
