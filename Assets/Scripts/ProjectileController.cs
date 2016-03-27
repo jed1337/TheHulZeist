@@ -17,11 +17,9 @@ public class ProjectileController : MonoBehaviour {
 		thisLayer = LayerMask.LayerToName(gameObject.layer);
 	}
 
-	void OnCollisionEnter2D(Collision2D col) {
-		colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
-		collissionOtherName = col.gameObject.name;
-
-		//print(collissionOtherName);
+	void OnCollisionEnter2D(Collision2D colOther) {
+		colOtherLayer = LayerMask.LayerToName(colOther.gameObject.layer);
+		collissionOtherName = colOther.gameObject.name;
 
 		//Ignore collission if with another projectile (thislayer), terrain, and the owner
 		string[] ignoreCol = new string[]{ thisLayer, ConstantNames.TERRAIN, owner};
