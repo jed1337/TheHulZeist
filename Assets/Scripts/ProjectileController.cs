@@ -25,6 +25,7 @@ public class ProjectileController : MonoBehaviour {
 		//If the collission is not with another projectile (same layer), and it isn't with the terrain
 		if(colOtherLayer!=thisLayer && colOtherLayer != ConstantNames.TERRAIN) {
 			Debug.Log("Test");
+
 			//if(colOtherLayer == ConstantNames.PLAYER) {
 			//	Debug.Log("Hit player");
 			//}
