@@ -2,9 +2,6 @@
 using System.Collections;
 
 public class ProjectileController : MonoBehaviour {
-	public float rotationSpeed;
-	public int damageToGive;
-
 	//public PlayerController player;
 	//public GameObject impactEffect;
 
@@ -38,4 +35,14 @@ public class ProjectileController : MonoBehaviour {
 	//	velocity = rBody.velocity;
 	//	rBody.velocity = Quaternion.AngleAxis(180, rBody.position) * transform.forward * 1;
 	//}
+
+
+	public float rotationSpeed;
+	public int damageToGive;
+
+	public string owner;
+
+	void OnCollisionEnter2D(Collision2D col) {
+		print("Collide");
+	}
 }

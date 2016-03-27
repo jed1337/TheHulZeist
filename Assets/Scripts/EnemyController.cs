@@ -25,19 +25,23 @@ public class EnemyController : MonoBehaviour {
 		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down * 5, enemyMask);
 
 		//Check to see if there's a wall in front of us before moving forward
-		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2() * 1f, enemyMask);
+		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2(), enemyMask);
 
 		//If theres no ground, turn around. Or if I hit a wall, turn around
 		if (!isGrounded || isBlocked) {
-			Vector3 currRot = myTrans.eulerAngles;
-			currRot.y += 180;
-			myTrans.eulerAngles = currRot;
+			FlipArt();
 		}
 
 		//Always move forward
 		Vector2 myVel = myBody.velocity;
 		myVel.x = -myTrans.right.x * speed;
 		myBody.velocity = myVel;
+	}
+
+	private void FlipArt() {
+		Vector3 currRot = myTrans.eulerAngles;
+		currRot.y += 180;
+		myTrans.eulerAngles = currRot;
 	}
 
 	bool CheckBounds(Vector2 start, Vector2 end, LayerMask mask) {
