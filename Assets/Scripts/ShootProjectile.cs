@@ -44,21 +44,26 @@ public class ShootProjectile : MonoBehaviour {
 				||
 				(playerPos.x > enemyPos.x		//Fire at the right
 				&& playerPos.x < enemyPos.x + playerRange)
-				){
+				) {
 
-				//Shoot projectile
-				GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
-				//cloneProjectile.GetComponent<Rigidbody2D>().velocity = (playerPos - launchPoint.position);
-
-				force = (playerPos - launchPoint.position).normalized* projectileSpeed;
-				cloneProjectile.GetComponent<Rigidbody2D>().AddForce(force);
-
-				Destroy(cloneProjectile, projectileLife);
-
-				pPosition = playerPos;
-				lPosition = launchPoint.position;
+				CloneProjectile(playerPos);
+				{//For debugging
+					pPosition = playerPos;
+					lPosition = launchPoint.position;
+				}
 			}
 			shotCounter = fireRate;
 		}
+	}
+
+	//Shoot projectile
+	private void CloneProjectile(Vector3 playerPos) {
+		GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
+		ProjectileController pc = cloneProjectile.GetComponent(typeof(ProjectileController)) as ProjectileController;
+
+		force = (playerPos - launchPoint.position).normalized* projectileSpeed;	//For debugging
+		cloneProjectile.GetComponent<Rigidbody2D>().AddForce(force);
+		pc.SetOwner(gameObject.layer);
+		Destroy(cloneProjectile, projectileLife);
 	}
 }

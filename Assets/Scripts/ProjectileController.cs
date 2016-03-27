@@ -44,5 +44,15 @@ public class ProjectileController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		print("Collide");
+		
+	}
+
+
+	public void SetOwner(int ownerLayer) {
+		SetOwner(LayerMask.LayerToName(ownerLayer));
+	}
+
+	public void SetOwner(string ownerLayer) {
+		owner = ownerLayer;
 	}
 }
