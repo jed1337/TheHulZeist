@@ -2,10 +2,9 @@
 using System.Collections;
 
 public abstract class AbstractAnimationController : MonoBehaviour {
-	public static AbstractAnimationController instance;
 
 	protected Transform mytrans;
-	protected Animator myAnim;
+	protected Animator animator;
 
 	//Used to flip the character depending on its position
 	protected Vector3 artScaleCache;
@@ -16,10 +15,6 @@ public abstract class AbstractAnimationController : MonoBehaviour {
 		artScaleCache = mytrans.localScale;
 	}
 
-	//// Update is called once per frame
-	//void Update () {
-
-	//}
 	public void FlipArt(float currentSpeed) {
 		if ((currentSpeed < 0 && artScaleCache.x == 1) || //Going left and facing right
 			(currentSpeed > 0 && artScaleCache.x == -1))  //Going right and facing left
@@ -31,15 +26,11 @@ public abstract class AbstractAnimationController : MonoBehaviour {
 	}
 
 	public void UpdateSpeed(float currentSpeed) {
-		myAnim.SetFloat("speed", currentSpeed);
+		animator.SetFloat("speed", currentSpeed);
 		FlipArt(currentSpeed);
 	}
 
-	public void UpdateIsGrounded(bool isGrounded) {
-		myAnim.SetBool("isGrounded", isGrounded);
-	}
-
 	public void UpdateIsAttacking(bool isAttacking) {
-		myAnim.SetBool("isAttacking", isAttacking);
+		animator.SetBool("isAttacking", isAttacking);
 	}
 }

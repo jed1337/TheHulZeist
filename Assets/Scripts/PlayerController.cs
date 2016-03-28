@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour {
 	public bool canMoveInAir  = true;
 	public LayerMask playerMask;
 
-	public Transform groundCheck;
 	public float groundCheckRadius;
-	public LayerMask whatIsGround;
 	private bool grounded;
+	public LayerMask whatIsGround;
+	public Transform groundCheck;
 
 	private float hInput = 0;
 	private Rigidbody2D myBody;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerAttack myAttack;
 
 	void Start() {
-		myAnim = PlayerAnimationController.instance as PlayerAnimationController;
+		myAnim = PlayerAnimationController.instance;
 		myAttack = PlayerAttack.instance;
 		myBody = this.GetComponent<Rigidbody2D>();
 	}

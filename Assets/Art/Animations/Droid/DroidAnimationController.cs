@@ -2,10 +2,7 @@
 using System.Collections;
 
 public class DroidAnimationController : AbstractAnimationController{
-	//public static DroidAnimationController instance;
-
-	//private Transform mytrans;
-	//private Animator myAnim;
+	public static DroidAnimationController instance;
 
 	void Awake() {
 		instance = this;
@@ -13,6 +10,10 @@ public class DroidAnimationController : AbstractAnimationController{
 
 	// Use this for initialization
 	void Start () {
-		myAnim = this.gameObject.GetComponent<Animator>();
+		animator = this.gameObject.GetComponent<Animator>();
+	}
+
+	public void UpdateIsDestroyed(bool isDestroyed) {
+		animator.SetBool("isDestroyed", isDestroyed);
 	}
 }

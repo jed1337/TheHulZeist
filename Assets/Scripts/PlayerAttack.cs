@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour {
 	private bool attacking = true;
 	private float attackTimer = 0;
 
-	private PlayerAnimationController anim;
+	private PlayerAnimationController myAnim;
 
 	void Awake() {
 		instance = this;
@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void Start() {
-		anim = PlayerAnimationController.instance as PlayerAnimationController;
+		myAnim = PlayerAnimationController.instance;
 	}
 
 	void FixedUpdate() {
@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour {
 				attackTrigger.enabled = false;
 
 			}
-			anim.UpdateIsAttacking(attacking);
+			myAnim.UpdateIsAttacking(attacking);
 		}
 	}
 

@@ -7,14 +7,15 @@ public class EnemyController : MonoBehaviour {
 	public bool isDebugMode = true;
 
 	private Rigidbody2D myBody;
-	private Transform myTrans;
 	private float myWidth;
 
+	private Transform myTrans;
+	private DroidAnimationController myAnim;
 	void Start() {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
-
 		myWidth  = this.GetComponent<SpriteRenderer>().bounds.extents.x;
+		myAnim = DroidAnimationController.instance;
 	}
 
 	void FixedUpdate() {
@@ -29,14 +30,15 @@ public class EnemyController : MonoBehaviour {
 
 		//If theres no ground, turn around. Or if I hit a wall, turn around
 		if (!isGrounded || isBlocked) {
-			TransformUtils.FlipArt(transform);
-				//FlipArt();
+			TransformUtils.FlipArt(myTrans);
 		}
 
 		//Always move forward
 		Vector2 myVel = myBody.velocity;
 		myVel.x = -myTrans.right.x * speed;
 		myBody.velocity = myVel;
+
+		myAnim.UpdateSpeed(myBody.velocity.x);
 	}
 
 

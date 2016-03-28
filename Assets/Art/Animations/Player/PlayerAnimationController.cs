@@ -2,13 +2,17 @@
 using System.Collections;
 
 public class PlayerAnimationController : AbstractAnimationController {
-	//public static PlayerAnimationController instance;
+	public static PlayerAnimationController instance;
 
 	void Awake() {
 		instance = this;
 	}
 
 	void Start () {
-		myAnim = this.gameObject.GetComponentInChildren<Animator>();
+		animator = this.gameObject.GetComponentInChildren<Animator>();
+	}
+
+	public void UpdateIsGrounded(bool isGrounded) {
+		animator.SetBool("isGrounded", isGrounded);
 	}
 }

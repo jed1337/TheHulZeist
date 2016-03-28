@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\AttackTrigger.cs" />
     <Compile Include="Assets\Scripts\ConstantNames.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EnemyShootProjectile.cs" />
     <Compile Include="Assets\Scripts\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
@@ -76,7 +77,6 @@
     <Compile Include="Assets\Scripts\ProjectSettings.cs" />
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\RemoveMobileGui.cs" />
-    <Compile Include="Assets\Scripts\ShootProjectile.cs" />
     <Compile Include="Assets\Scripts\TransformUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
