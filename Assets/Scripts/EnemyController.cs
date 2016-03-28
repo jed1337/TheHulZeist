@@ -29,7 +29,8 @@ public class EnemyController : MonoBehaviour {
 
 		//If theres no ground, turn around. Or if I hit a wall, turn around
 		if (!isGrounded || isBlocked) {
-			FlipArt();
+			TransformUtils.FlipArt(transform);
+				//FlipArt();
 		}
 
 		//Always move forward
@@ -38,11 +39,6 @@ public class EnemyController : MonoBehaviour {
 		myBody.velocity = myVel;
 	}
 
-	private void FlipArt() {
-		Vector3 currRot = myTrans.eulerAngles;
-		currRot.y += 180;
-		myTrans.eulerAngles = currRot;
-	}
 
 	bool CheckBounds(Vector2 start, Vector2 end, LayerMask mask) {
 		if (isDebugMode) {
