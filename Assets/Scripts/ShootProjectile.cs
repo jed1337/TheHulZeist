@@ -9,9 +9,10 @@ public class ShootProjectile : MonoBehaviour {
 
 	public GameObject projectile;
 	public PlayerController player;
-	public Transform launchPoint;
+	//public Transform launchPoint;
 
 	private float shotCounter;
+	private Vector3 enemyPos;
 
 	//For debugging
 	private Vector3 pPosition;
@@ -22,19 +23,21 @@ public class ShootProjectile : MonoBehaviour {
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
 		shotCounter = fireRate;
+		enemyPos = this.transform.position;
 	}
 
 	void Update() {
 		shotCounter -= Time.deltaTime;
 
 		Vector3 playerPos = player.transform.position;
-		Vector3 enemyPos = transform.position;
-
 		Vector3 start = new Vector3(enemyPos.x - playerRange, enemyPos.y, enemyPos.z);
 		Vector3 end = new Vector3(enemyPos.x + playerRange, enemyPos.y, enemyPos.z);
 		Debug.DrawLine(start, end, Color.magenta);
-		Debug.DrawLine(launchPoint.position, playerPos, Color.red);
-		hitTerrain = Physics2D.Linecast(launchPoint.position, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
+		//Debug.DrawLine(launchPoint.position, playerPos, Color.red);
+		Debug.DrawLine(enemyPos, playerPos, Color.red);
+
+		//hitTerrain = Physics2D.Linecast(launchPoint.position, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
+		hitTerrain = Physics2D.Linecast(enemyPos, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
 
 		//Only fire if the enemy has reloaded
 		if (shotCounter < 0 && transform.localScale.x > 0) {
@@ -49,7 +52,7 @@ public class ShootProjectile : MonoBehaviour {
 				CloneProjectile(playerPos);
 				{//For debugging
 					pPosition = playerPos;
-					lPosition = launchPoint.position;
+					//lPosition = launchPoint.position;
 				}
 			}
 			shotCounter = fireRate;
@@ -58,13 +61,20 @@ public class ShootProjectile : MonoBehaviour {
 
 	//Shoot projectile
 	private void CloneProjectile(Vector3 playerPos) {
-		GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
+		//GameObject cloneProjectile = Instantiate(projectile, launchPoint.position, launchPoint.rotation) as GameObject;
+		GameObject cloneProjectile = Instantiate(projectile, enemyPos, transform.rotation) as GameObject;
 		ProjectileController pc = cloneProjectile.GetComponent(typeof(ProjectileController)) as ProjectileController;
 
-		force = (playerPos - launchPoint.position).normalized* projectileSpeed;	//For debugging
+		force = (playerPos - enemyPos).normalized* projectileSpeed;	//For debugging
 		cloneProjectile.GetComponent<Rigidbody2D>().AddForce(force);
 		pc.SetOwner(gameObject.layer);
 		pc.SetHostileTo(ConstantNames.PLAYER);
 		Destroy(cloneProjectile, projectileLife);
+	}
+
+	private void FlipArt() {
+		Vector3 currRot = this.transform.eulerAngles;
+		currRot.y += 180;
+		this.transform.eulerAngles = currRot;
 	}
 }
