@@ -11,7 +11,7 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 ######Kromme  
 * Attack 250x155
 * Fall, Jump, Midair, Run 164x155
-* Idle 95x155  
+* Idle 95x155    
 ######Droid
 * Attack 120x155
 * Death, Idle 100x155
