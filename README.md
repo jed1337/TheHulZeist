@@ -24,4 +24,4 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 		* PlayerController.cs
 		* PlayerAnimationController.cs
 * Bugs
-	* Enemies get a null reference error when player gets destroyed (It's null)
+	* Enemies get a null reference error when player gets destroyed (It's null)  
