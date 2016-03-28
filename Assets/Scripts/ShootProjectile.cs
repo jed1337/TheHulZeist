@@ -47,13 +47,11 @@ public class ShootProjectile : MonoBehaviour {
 					&& playerPos.x < enemyPos.x + playerRange)
 					) {
 
+					//Flip enemy if the player is behind it
 					if (atMiddle(playerPos, enemyPos, launchPos)) {
 						TransformUtils.FlipArt(transform);
-					
 					}
-
 					CloneProjectile(playerPos);
-
 				}
 				shotCounter = fireRate;
 			}
