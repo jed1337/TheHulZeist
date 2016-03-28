@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void Start() {
-		anim = PlayerAnimationController.instance;
+		anim = PlayerAnimationController.instance as PlayerAnimationController;
 	}
 
 	void FixedUpdate() {

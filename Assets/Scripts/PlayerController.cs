@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerAttack myAttack;
 
 	void Start() {
-		myAnim = PlayerAnimationController.instance;
+		myAnim = PlayerAnimationController.instance as PlayerAnimationController;
 		myAttack = PlayerAttack.instance;
 		myBody = this.GetComponent<Rigidbody2D>();
 	}
