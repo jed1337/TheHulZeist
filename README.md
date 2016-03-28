@@ -1,3 +1,6 @@
+###Game Design Document  
+https://docs.google.com/document/d/1eKr6nUUIoVuXqGCYKZ1zLZIJqzwPFcsfhedado_33sc/edit
+
 ###Unity notes:  
 https://docs.google.com/document/d/1Ao9UhQioaY14J-6KhoiFjg_dBrLWD4Wctiub9AjgkuE/edit
 
