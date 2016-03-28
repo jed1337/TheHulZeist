@@ -9,9 +9,13 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 
 ###Spritesheet specifics  
 ######Kromme  
-* Run, Jump, Midair, Fall 164x155
-* Idle 95x155
 * Attack 250x155
+* Fall, Jump, Midair, Run 164x155
+* Idle 95x155
+######Droid
+* Attack 120x155
+* Death, Idle 100x155
+* Run 150x155
 
 ###Issues:  
 * Placeholder art (Currently solving)
