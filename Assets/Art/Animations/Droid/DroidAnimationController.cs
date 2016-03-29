@@ -12,8 +12,4 @@ public class DroidAnimationController : AbstractAnimationController{
 	void Start () {
 		animator = this.gameObject.GetComponent<Animator>();
 	}
-
-	public void UpdateIsDestroyed(bool isDestroyed) {
-		animator.SetBool("isDestroyed", isDestroyed);
-	}
 }

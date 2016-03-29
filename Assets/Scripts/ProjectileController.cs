@@ -22,10 +22,12 @@ public class ProjectileController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
-		//collissionOtherName = colOther.gameObject.name;
 
 		//If the contact is with a hostility
 		if (colOtherLayer == hostileTo) {
+			if(col.gameObject.GetComponent<AbstractAnimationController>()== null) {
+				throw new System.MissingMemberException("Abstract Animation Controller missing in " + col.gameObject.name);
+			}
 			bool destroyHostility = true;
 			if (colOtherLayer == ConstantNames.PLAYER) {
 				string col0Name = col.contacts[0].collider.name;
@@ -42,10 +44,13 @@ public class ProjectileController : MonoBehaviour {
 			}
 			if (destroyHostility) {
 				DebugLogContact();
-				if(!inDebugMode)
-					Destroy(col.gameObject);
+				if (!inDebugMode) {
+					col.gameObject.GetComponent<AbstractAnimationController>().UpdateIsDestroyed(true);
+					//Destroy(col.gameObject);
+				}
 				Destroy(gameObject);	//Destroy the projectile
 			}
+
 		}
 	}
 

@@ -23,9 +23,6 @@ public class PlayerController : MonoBehaviour {
 		myAttack = PlayerAttack.instance;
 		myBody = this.GetComponent<Rigidbody2D>();
 
-		//Vector3 artScaleCache = this.transform.localScale;
-		//artScaleCache.x = 1;
-		//this.transform.localScale = artScaleCache;
 	}
 
 	void FixedUpdate() {
