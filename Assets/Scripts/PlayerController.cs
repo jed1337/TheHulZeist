@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour {
 		myAnim = PlayerAnimationController.instance;
 		myAttack = PlayerAttack.instance;
 		myBody = this.GetComponent<Rigidbody2D>();
+
+		//Vector3 artScaleCache = this.transform.localScale;
+		//artScaleCache.x = 1;
+		//this.transform.localScale = artScaleCache;
 	}
 
 	void FixedUpdate() {
@@ -34,11 +38,11 @@ public class PlayerController : MonoBehaviour {
 		Move (hInput);
 	}
 
-	private void Move(float _speed) {
-		myAnim.UpdateSpeed(_speed);
-
+	private void Move(float speed) {
+		myAnim.UpdateSpeed(speed);
+		//myAnim.FlipArt
 		Vector2 moveVel = myBody.velocity;
-		moveVel.x = _speed * this.speed;
+		moveVel.x = speed * this.speed;
 		myBody.velocity = moveVel;
 	}
 
