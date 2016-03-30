@@ -15,7 +15,7 @@ public abstract class AbstractAnimationController : MonoBehaviour {
 	public void UpdateIsDestroyed(bool isDestroyed) {
 		animator.SetBool("isDestroyed", isDestroyed);
 
-		StartCoroutine(Die());
+		//StartCoroutine(Die());
 		Destroy(gameObject);
 	}
 
