@@ -6,6 +6,7 @@ public class ProjectileController : MonoBehaviour {
 	public float rotationSpeed;
 	public int damageToGive;
 	public bool inDebugMode = false;
+	public bool isPlayerImmortal = true;
 
 	private string owner;
 	private string hostileTo;
@@ -39,6 +40,9 @@ public class ProjectileController : MonoBehaviour {
 					owner = hostileTo;
 					hostileTo = temp;
 
+					destroyHostility = false;
+				}
+				if (isPlayerImmortal) {
 					destroyHostility = false;
 				}
 			}
