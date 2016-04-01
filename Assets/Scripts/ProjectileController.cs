@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ProjectileController : MonoBehaviour {
 	public float rotationSpeed;
 	public int damageToGive;
 	public bool inDebugMode = false;
-	public bool isPlayerImmortal = true;
+	public bool isPlayerImmortal = false;
 
 	private string owner;
 	private string hostileTo;
 
 	private string colOtherLayer;
-	private string thisLayer;
+	//private string thisLayer;
 
 	//For debugging
 	//private string collissionOtherName;
 
 	void Start() {
-		thisLayer = LayerMask.LayerToName(gameObject.layer);
+		//thisLayer = LayerMask.LayerToName(gameObject.layer);
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
@@ -41,6 +42,9 @@ public class ProjectileController : MonoBehaviour {
 					hostileTo = temp;
 
 					destroyHostility = false;
+				} else {
+					Destroy (col.gameObject);
+					SceneManager.LoadScene ("Game Over");
 				}
 				if (isPlayerImmortal) {
 					destroyHostility = false;
@@ -50,7 +54,7 @@ public class ProjectileController : MonoBehaviour {
 				DebugLogContact();
 				if (!inDebugMode) {
 					col.gameObject.GetComponent<AbstractAnimationController>().UpdateIsDestroyed(true);
-					//Destroy(col.gameObject);
+					Destroy(col.gameObject);
 				}
 				Destroy(gameObject);	//Destroy the projectile
 			}
