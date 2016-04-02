@@ -13,8 +13,6 @@ public class MenuLogic : MonoBehaviour {
 
 		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		if(GUI.Button (rect, desc)){
-			
-			print ("ALLAHU AKBAR");
 
 			SceneManager.LoadScene(levelToLoad);
 		}
