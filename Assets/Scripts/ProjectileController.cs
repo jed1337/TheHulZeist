@@ -42,7 +42,7 @@ public class ProjectileController : MonoBehaviour {
 					hostileTo = temp;
 
 					destroyHostility = false;
-				} else {
+				} else if (!isPlayerImmortal){
 					Destroy (col.gameObject);
 					SceneManager.LoadScene ("Game Over");
 				}
