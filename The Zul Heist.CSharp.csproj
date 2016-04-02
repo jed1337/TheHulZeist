@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\TransformUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\GitMerge-for-Unity\Editor\Resources\Licenses.txt" />
     <None Include="Assets\Shaders\Tile.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
