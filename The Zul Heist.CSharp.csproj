@@ -67,6 +67,7 @@
     <Compile Include="Assets\Art\Animations\Droid\DroidAnimationController.cs" />
     <Compile Include="Assets\Art\Animations\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\AttackTrigger.cs" />
+    <Compile Include="Assets\Scripts\Bounce.cs" />
     <Compile Include="Assets\Scripts\ConstantNames.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyShootProjectile.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scripts\TransformUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\GitMerge-for-Unity\Editor\Resources\Licenses.txt" />
     <None Include="Assets\Shaders\Tile.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
