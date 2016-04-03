@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+		animationController.UpdateVertSpeed(myBody.velocity.y);
 		animationController.UpdateIsGrounded(grounded);
 
 #if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
@@ -41,7 +42,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void Move(float speed) {
 		animationController.UpdateSpeed(speed);
-		//myAnim.FlipArt
 		Vector2 moveVel = myBody.velocity;
 		moveVel.x = speed * this.speed;
 		myBody.velocity = moveVel;
