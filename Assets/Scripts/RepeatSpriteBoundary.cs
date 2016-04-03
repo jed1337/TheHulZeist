@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class RepeatSpriteBoundary : MonoBehaviour {
-	SpriteRenderer spriteRenderer;
+	//SpriteRenderer spriteRenderer;
 	void Awake() {
 
 		//spriteRenderer = GetComponent<SpriteRenderer>();
