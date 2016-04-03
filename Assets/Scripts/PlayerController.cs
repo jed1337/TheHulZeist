@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 		myAnim.UpdateIsGrounded(grounded);
 
 #if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
-		KeyboardMoving();
+		//KeyboardMoving();
 #endif
 		Move (hInput);
 	}
