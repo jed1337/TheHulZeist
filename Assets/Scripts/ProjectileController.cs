@@ -43,6 +43,7 @@ public class ProjectileController : MonoBehaviour {
 					hostileTo = temp;
 
 					destroyHostility = false;
+					GetComponent<ParticleSystem>().startColor = Color.red;
 				} else if (!isPlayerImmortal){
 					Destroy (col.gameObject);
 					SceneManager.LoadScene ("Game Over");
