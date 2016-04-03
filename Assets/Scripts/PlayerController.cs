@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 		KeyboardMoving();
 #endif
 		Move(hInput);
-		Debug.Log(myBody.velocity.y);
+		//Debug.Log(myBody.velocity.y);
 	}
 
 	private void Move(float speed) {
