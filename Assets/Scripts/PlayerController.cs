@@ -8,35 +8,39 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask playerMask;
 
 	public float groundCheckRadius;
-	private bool grounded;
 	public LayerMask whatIsGround;
 	public Transform groundCheck;
 
+	private bool grounded;
 	private float hInput = 0;
 	private Rigidbody2D myBody;
 
-	private PlayerAnimationController myAnim;
+	private Animator animator;
+	private PlayerAnimationController animationController;
 	private PlayerAttack myAttack;
 
 	void Start() {
-		myAnim = PlayerAnimationController.instance;
+		animationController = PlayerAnimationController.instance;
 		myAttack = PlayerAttack.instance;
+		animator = this.GetComponentInChildren<Animator>();
 		myBody = this.GetComponent<Rigidbody2D>();
+		//animator.Play("Fall");
 
 	}
 
 	void FixedUpdate() {
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-		myAnim.UpdateIsGrounded(grounded);
+		animationController.UpdateIsGrounded(grounded);
 
 #if !UNITY_ANDROID && !UNITY_IPHONE && !UNITY_BLACKBERRY && !UNITY_WINRT || UNITY_EDITOR
 		KeyboardMoving();
 #endif
 		Move(hInput);
+		Debug.Log(myBody.velocity.y);
 	}
 
 	private void Move(float speed) {
-		myAnim.UpdateSpeed(speed);
+		animationController.UpdateSpeed(speed);
 		//myAnim.FlipArt
 		Vector2 moveVel = myBody.velocity;
 		moveVel.x = speed * this.speed;

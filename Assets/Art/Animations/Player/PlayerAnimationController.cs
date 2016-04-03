@@ -37,4 +37,8 @@ public class PlayerAnimationController : AbstractAnimationController {
 	public void UpdateIsGrounded(bool isGrounded) {
 		animator.SetBool("isGrounded", isGrounded);
 	}
+
+	public void UpdateVertSpeed(float vertSpeed) {
+		animator.SetFloat("vertSpeed", vertSpeed);
+	}
 }
