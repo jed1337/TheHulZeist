@@ -26,7 +26,7 @@ public class EnemyShootProjectile : MonoBehaviour {
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
 		shotCounter = fireRate;
-		myAnim = GetComponentInParent<DroidAnimationController>();
+		myAnim = this.GetComponent<DroidAnimationController>();
 	}
 
 	void FixedUpdate() {

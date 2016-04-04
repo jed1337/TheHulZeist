@@ -15,17 +15,13 @@ public class PlayerController : MonoBehaviour {
 	private float hInput = 0;
 	private Rigidbody2D myBody;
 
-	private Animator animator;
 	private PlayerAnimationController animationController;
 	private PlayerAttack myAttack;
 
 	void Start() {
-		animationController = PlayerAnimationController.instance;
 		myAttack = PlayerAttack.instance;
-		animator = this.GetComponentInChildren<Animator>();
+		animationController = this.GetComponent<PlayerAnimationController>();
 		myBody = this.GetComponent<Rigidbody2D>();
-		//animator.Play("Fall");
-
 	}
 
 	void FixedUpdate() {
@@ -37,7 +33,6 @@ public class PlayerController : MonoBehaviour {
 		KeyboardMoving();
 #endif
 		Move(hInput);
-		//Debug.Log(myBody.velocity.y);
 	}
 
 	private void Move(float speed) {
