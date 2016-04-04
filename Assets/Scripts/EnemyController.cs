@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
 		myWidth  = this.GetComponent<SpriteRenderer>().bounds.extents.x;
-		myAnim = DroidAnimationController.instance;
+		myAnim = this.GetComponent<DroidAnimationController>();
 	}
 
 	void FixedUpdate() {

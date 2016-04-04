@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void Start() {
-		myAnim = PlayerAnimationController.instance;
+		myAnim = GetComponent<PlayerAnimationController>();
 	}
 
 	void FixedUpdate() {

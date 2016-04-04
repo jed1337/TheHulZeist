@@ -36,13 +36,15 @@ public class ProjectileController : MonoBehaviour {
 				bool deflected = col0Name == ConstantNames.ATTACK_TRIGGER;
 				//DebugCheckIfDeflected(col0Name);
 
-				if (deflected) {	//Swap owner and hostile to
+				if (deflected) {  //Swap owner and hostile to
+					Debug.Log("Deflected");
 					string temp = owner;
 					owner = hostileTo;
 					hostileTo = temp;
 
 					destroyHostility = false;
-				} else {
+					GetComponent<ParticleSystem>().startColor = Color.red;
+				} else if (!isPlayerImmortal){
 					Destroy (col.gameObject);
 					SceneManager.LoadScene ("Game Over");
 				}

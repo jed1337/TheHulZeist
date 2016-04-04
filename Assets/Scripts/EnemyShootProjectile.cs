@@ -26,12 +26,13 @@ public class EnemyShootProjectile : MonoBehaviour {
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
 		shotCounter = fireRate;
-		myAnim = DroidAnimationController.instance;
+		myAnim = this.GetComponent<DroidAnimationController>();
 	}
 
 	void FixedUpdate() {
 			
 		try{
+
 			shotCounter -= Time.deltaTime;
 
 			playerPos = player.transform.position;
