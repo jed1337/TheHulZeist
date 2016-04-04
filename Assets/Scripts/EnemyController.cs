@@ -15,7 +15,8 @@ public class EnemyController : MonoBehaviour {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
 		myWidth  = this.GetComponent<SpriteRenderer>().bounds.extents.x;
-		myAnim = DroidAnimationController.instance;
+		myAnim = gameObject.GetComponent<DroidAnimationController>();
+		//myAnim.UpdateSpeed(100);
 	}
 
 	void FixedUpdate() {
@@ -38,7 +39,8 @@ public class EnemyController : MonoBehaviour {
 		myVel.x = -myTrans.right.x * speed;
 		myBody.velocity = myVel;
 
-		myAnim.UpdateSpeed(myBody.velocity.x);
+		//myAnim.UpdateSpeed(myBody.velocity.x);
+		myAnim.UpdateSpeed(100);
 	}
 
 
