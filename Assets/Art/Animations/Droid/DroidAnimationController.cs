@@ -6,7 +6,5 @@ public class DroidAnimationController : AbstractAnimationController {
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 
-	public void UpdateSpeed(float currentSpeed) {
-		animator.SetFloat("speed", currentSpeed);
-	}
+
 }

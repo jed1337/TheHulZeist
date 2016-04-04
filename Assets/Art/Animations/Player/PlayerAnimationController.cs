@@ -30,7 +30,7 @@ public class PlayerAnimationController : AbstractAnimationController {
 	}
 
 	public new void UpdateSpeed(float currentSpeed) {
-		animator.SetFloat("speed", currentSpeed);
+		base.UpdateSpeed(currentSpeed);
 		FlipArt(currentSpeed);
 	}
 
