@@ -30,6 +30,7 @@ public class ProjectileController : MonoBehaviour {
 			if(col.gameObject.GetComponent<AbstractAnimationController>()== null) {
 				throw new System.MissingMemberException("Abstract Animation Controller missing in " + col.gameObject.name);
 			}
+
 			bool destroyHostility = true;
 			if (colOtherLayer == ConstantNames.PLAYER) {
 				string col0Name = col.contacts[0].collider.name;
@@ -48,7 +49,7 @@ public class ProjectileController : MonoBehaviour {
 					Destroy (col.gameObject);
 					SceneManager.LoadScene ("Game Over");
 				}
-				if (isPlayerImmortal) {
+				if (inDebugMode || isPlayerImmortal) {
 					destroyHostility = false;
 				}
 			}
