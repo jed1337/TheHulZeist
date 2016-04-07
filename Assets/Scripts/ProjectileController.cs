@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class ProjectileController : MonoBehaviour {
+    public AudioSource deflect;
 	public float rotationSpeed;
 	public int damageToGive;
 	public bool inDebugMode = false;
@@ -33,6 +34,7 @@ public class ProjectileController : MonoBehaviour {
 				//DebugCheckIfDeflected(col0Name);
 
 				if (deflected) {  //Swap owner and hostile to
+                    deflect.Play();
 					Debug.Log("Deflected");
 					string temp = owner;
 					owner = hostileTo;

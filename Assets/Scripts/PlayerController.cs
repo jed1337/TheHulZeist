@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed;
+    public AudioSource bladeSound;
+
+    public float speed;
 	public float jumpVelocity;
 	public bool canMoveInAir  = true;
 	public LayerMask playerMask;
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 			Jump();
 		}
 		if (Input.GetKey(KeyCode.Space)) {
+            bladeSound.Play();
 			myAttack.TryAttack();
 		}
 	}
