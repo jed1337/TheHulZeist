@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour {
 		Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
 
 		//Check to see if there's ground in front of us before moving forward
-		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down * 5, enemyMask);
+		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down, enemyMask);
 
 		//Check to see if there's a wall in front of us before moving forward
 		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2(), enemyMask);
