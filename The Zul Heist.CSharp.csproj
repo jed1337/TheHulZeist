@@ -78,7 +78,6 @@
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\RemoveMobileGui.cs" />
     <Compile Include="Assets\Scripts\RepeatSpriteBoundary.cs" />
-    <Compile Include="Assets\Scripts\SpritePivotAlignment.cs" />
     <Compile Include="Assets\Scripts\TransformUtils.cs" />
     <Compile Include="Assets\Scripts\TreasureController.cs" />
   </ItemGroup>
