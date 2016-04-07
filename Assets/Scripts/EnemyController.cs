@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour {
 		myAnim = this.GetComponent<DroidAnimationController>();
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		//Use this position to cast the isGrounded/isBlocked lines from
 		Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
 

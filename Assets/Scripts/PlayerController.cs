@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 		myBody = this.GetComponent<Rigidbody2D>();
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 		animationController.UpdateVertSpeed(myBody.velocity.y);
 		animationController.UpdateIsGrounded(grounded);
