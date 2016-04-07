@@ -66,6 +66,7 @@
     <Compile Include="Assets\Art\Animations\AbstractAnimationController.cs" />
     <Compile Include="Assets\Art\Animations\Droid\DroidAnimationController.cs" />
     <Compile Include="Assets\Art\Animations\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\AttackTriggerController.cs" />
     <Compile Include="Assets\Scripts\ConstantNames.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyShootProjectile.cs" />
