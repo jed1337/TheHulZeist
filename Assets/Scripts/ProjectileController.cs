@@ -13,14 +13,9 @@ public class ProjectileController : MonoBehaviour {
 	private string hostileTo;
 
 	private string colOtherLayer;
-	//private string thisLayer;
 
 	//For debugging
 	//private string collissionOtherName;
-
-	void Start() {
-		//thisLayer = LayerMask.LayerToName(gameObject.layer);
-	}
 
 	void OnCollisionEnter2D(Collision2D col) {
 		colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
