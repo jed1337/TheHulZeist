@@ -6,18 +6,6 @@ public class TreasureController : MonoBehaviour {
 
     private string colOtherLayer;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         colOtherLayer = LayerMask.LayerToName(col.gameObject.layer);
@@ -27,7 +15,7 @@ public class TreasureController : MonoBehaviour {
         if (colOtherLayer == ConstantNames.PLAYER)
         {
             Destroy(col.gameObject);
-            SceneManager.LoadScene("Game Over");
+            SceneManager.LoadScene("Win");
             Destroy(gameObject);    //Destroy the projectile
         }
     }
