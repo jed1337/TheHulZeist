@@ -2,16 +2,10 @@
 using System.Collections;
 
 public class PlayerAnimationController : AbstractAnimationController {
-	public static PlayerAnimationController instance;
-
 	protected Transform mytrans;
 
 	//Used to flip the character depending on its position
 	protected Vector3 artScaleCache;
-
-	void Awake() {
-		instance = this;
-	}
 
 	void Start () {
 		animator = this.gameObject.GetComponentInChildren<Animator>();
@@ -30,11 +24,15 @@ public class PlayerAnimationController : AbstractAnimationController {
 	}
 
 	public new void UpdateSpeed(float currentSpeed) {
-		animator.SetFloat("speed", currentSpeed);
+		base.UpdateSpeed(currentSpeed);
 		FlipArt(currentSpeed);
 	}
 
 	public void UpdateIsGrounded(bool isGrounded) {
 		animator.SetBool("isGrounded", isGrounded);
+	}
+
+	public void UpdateVertSpeed(float vertSpeed) {
+		animator.SetFloat("vertSpeed", vertSpeed);
 	}
 }

@@ -15,15 +15,15 @@ public class EnemyController : MonoBehaviour {
 		myTrans = this.transform;
 		myBody = this.GetComponent<Rigidbody2D>();
 		myWidth  = this.GetComponent<SpriteRenderer>().bounds.extents.x;
-		myAnim = DroidAnimationController.instance;
+		myAnim = this.GetComponent<DroidAnimationController>();
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		//Use this position to cast the isGrounded/isBlocked lines from
 		Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
 
 		//Check to see if there's ground in front of us before moving forward
-		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down * 5, enemyMask);
+		bool isGrounded = CheckBounds(lineCastPos, lineCastPos + Vector2.down, enemyMask);
 
 		//Check to see if there's a wall in front of us before moving forward
 		bool isBlocked = CheckBounds(lineCastPos, lineCastPos - myTrans.right.toVector2(), enemyMask);

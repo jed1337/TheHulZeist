@@ -5,7 +5,8 @@ public class PlayerAttack : MonoBehaviour {
 	public static PlayerAttack instance;
 
 	public Collider2D attackTrigger;
-	public float attackCd = 0.3f;
+	public float attackCd = 0.4f;
+	public float forceMultiplier = 10000;
 
 	private bool attacking = true;
 	private float attackTimer = 0;
@@ -18,10 +19,10 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void Start() {
-		myAnim = PlayerAnimationController.instance;
+		myAnim = this.GetComponent<PlayerAnimationController>();
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		if (attacking) {
 			if (attackTimer > 0) {
 				attackTimer -= Time.deltaTime;
@@ -37,10 +38,8 @@ public class PlayerAttack : MonoBehaviour {
 
 	public void TryAttack() {
 		if (!attacking) {
-
 			attacking = true;
 			attackTimer = attackCd;
-
 
 			attackTrigger.enabled = true;
 		}

@@ -26,39 +26,46 @@ public class EnemyShootProjectile : MonoBehaviour {
 	void Start () {
 		player = FindObjectOfType<PlayerController>();
 		shotCounter = fireRate;
-		myAnim = DroidAnimationController.instance;
+		myAnim = this.GetComponent<DroidAnimationController>();
+		shotCounter -= 1;
 	}
 
-	void FixedUpdate() {
-		shotCounter -= Time.deltaTime;
+	void Update() {
+			
+		try{
 
-		playerPos = player.transform.position;
-		enemyPos = transform.position;
-		launchPos = launchPoint.position;
+			shotCounter -= Time.deltaTime;
 
-		DebugDrawProjectilePath(playerPos, enemyPos);
+			playerPos = player.transform.position;
+			enemyPos = transform.position;
+			launchPos = launchPoint.position;
 
-		hitTerrain = Physics2D.Linecast(launchPoint.position, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
+			DebugDrawProjectilePath(playerPos, enemyPos);
 
-		//Only fire if there is no terrain in the way and if has reloaded and if the player is in range
-		if (!hitTerrain && shotCounter < 0 && transform.localScale.x > 0) {
-			if ((playerPos.x < enemyPos.x //Fire at the left
-				&& playerPos.x > enemyPos.x - playerRange)
-				||
-				(playerPos.x > enemyPos.x  //Fire at the right
-				&& playerPos.x < enemyPos.x + playerRange)
-				) {
+			hitTerrain = Physics2D.Linecast(launchPoint.position, playerPos, 1 << LayerMask.NameToLayer("Terrain"));
 
-				//Flip enemy if the player is behind it
-				if (atMiddle(playerPos, enemyPos, launchPos)) {
-					TransformUtils.FlipArt(transform);
+			//Only fire if there is no terrain in the way and if has reloaded and if the player is in range
+			if (!hitTerrain && shotCounter < 0 && transform.localScale.x > 0) {
+				if ((playerPos.x < enemyPos.x //Fire at the left
+					&& playerPos.x > enemyPos.x - playerRange)
+					||
+					(playerPos.x > enemyPos.x  //Fire at the right
+					&& playerPos.x < enemyPos.x + playerRange)
+					) {
+
+					//Flip enemy if the player is behind it
+					if (atMiddle(playerPos, enemyPos, launchPos)) {
+						TransformUtils.FlipArt(transform);
+					}
+					myAnim.UpdateIsAttacking(true);
+					CloneProjectile(playerPos);
 				}
-				myAnim.UpdateIsAttacking(true);
-				CloneProjectile(playerPos);
+				shotCounter = fireRate;
+			}else if (shotCounter > 0) {
+				myAnim.UpdateIsAttacking(false);
 			}
-			shotCounter = fireRate;
-		}else if (shotCounter > 0) {
-			myAnim.UpdateIsAttacking(false);
+		}
+		catch(MissingReferenceException){
 		}
 	}
 
