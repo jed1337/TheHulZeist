@@ -1,24 +1,26 @@
-###Game Design Document  	
+# The Zul Heist
+
+## Game Design Document
 https://docs.google.com/document/d/1eKr6nUUIoVuXqGCYKZ1zLZIJqzwPFcsfhedado_33sc/edit
 
-###Unity notes:  
+## Unity notes:
 https://docs.google.com/document/d/1Ao9UhQioaY14J-6KhoiFjg_dBrLWD4Wctiub9AjgkuE/edit
 
-###Trello board:  
+## Trello board:
 https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 
-###Spritesheet specifics  
-######Kromme  
+## Spritesheet specifics
+### Kromme
 * Attack 250x155
 * Fall, Jump, Midair, Run 164x155
-* Idle 95x155  
+* Idle 95x155
 
-######Droid
+### Droid
 * Attack 120x155
 * Death, Idle 100x155
 * Run 150x155
 
-###Issues:  
+## Issues:
 * Placeholder art (Currently solving)
 * Game balance
 	* Speed, jump height, etc.
@@ -29,4 +31,4 @@ https://trello.com/c/b2p2Z8IA/11-the-gentlemen-caychingco-merle-monzon
 		* PlayerController.cs
 		* PlayerAnimationController.cs
 * Bugs
-	* Enemies get a null reference error when player gets destroyed (It's null)  
+	* Enemies get a null reference error when player gets destroyed (It's null)
